@@ -30,14 +30,13 @@
 
                 <a class="btn btn-sm btn-warning" href="{% url 'list' %}">Reset</a>
             </form>
+            <a class="btn btn-sm btn-primary m-3" href="{% url 'add' %}">Add Students</a>
             <br><br>
 
             <table class="student-table">
                 <thead>
                     <tr>
                         <th scope="col">Sr no.</th>
-                            <a class="btn btn-sm btn-primary m-3 left" href="{% url 'add' %}">Add Students</a>
-
                         <th scope="col">Student Name</th>
                         <th scope="col">Course</th>
                         <th scope="col">Email</th>
@@ -55,7 +54,10 @@
                         <td>{{ students.email }}</td>
                         <td>{{ students.mobile }}</td>
                         <td>{{ students.city }}</td>
-                        <td></td>
+                        <td>
+                            <a href="{% url 'edit' students.id %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'delete' students.id %}" class="btn btn-danger" onclick="return confirm('Delete this student ?')">Delete</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

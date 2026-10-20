@@ -9,4 +9,6 @@ urlpatterns=[
     # student crud
     path('student/add/',views.stud_add,name='add'),
     path('student/list/',views.stud_list, name='list'),
+    path('student/edit/<int:id>/',views.stud_edit, name='edit'),
+    path('student/delete/<int:id>/',views.stud_delete, name='delete'),
 ]
