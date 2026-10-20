@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col">
+    <div class="row">
+        <form method="POST">
+            <h2>Add Student with django forms</h2>
+            {% csrf_token %}
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required><br><br>
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required><br><br>
+
+            <label for="mobile">Mobile</label>
+            <input id="mobile" name="mobile" type="text" required><br><br>
+
+            <label for="city">City</label>
+            <input id="city" name="city" type="text" required><br><br>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

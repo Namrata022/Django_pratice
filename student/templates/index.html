@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <h1>Hello world</h1>
+
+    <hr>
+    <h2>Student Details</h2>
+    Name:{{ name }}<br>
+    Course:{{ course }}<br>
+    College:{{ college }}
+
+    <hr>
+    <h2>Student List</h2>
+    <ul>
+        {% for student in student %}
+        {{ forloop.counter}}
+            <li>{{ student }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <h2>Marks</h2>
+    {% if marks >= 35 %}
+    Pass
+    {% else %}
+    Fail
+    {% endif %}
+
+
+{% endblock %}

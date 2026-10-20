@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .student-table th{
+            background-color: gray;
+        }
+        .student-table th,
+        .student-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+
+    <div class="card-container">
+        <h1>Student List</h1>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form method="GET">
+                <input type="text" name="search" class="from-control-9" 
+                placeholder="Search by Name, Email, Mobile or City" value="{{ search }}">
+                <button class="btn btn-secondary" type="submit">Search</button>
+
+                <a class="btn btn-sm btn-warning" href="{% url 'list' %}">Reset</a>
+            </form>
+            <br><br>
+
+            <table class="student-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sr no.</th>
+                            <a class="btn btn-sm btn-primary m-3 left" href="{% url 'add' %}">Add Students</a>
+
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for students in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ students.name }}</td>
+                        <td>{{ students.c_name }}</td>
+                        <td>{{ students.email }}</td>
+                        <td>{{ students.mobile }}</td>
+                        <td>{{ students.city }}</td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+        
+
+  
+{% endblock %}

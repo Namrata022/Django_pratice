@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <h2>Employee salary</h2>
+    {% for employee in employees %}
+        <P>{{ employee.name |upper }}</P>
+        {% if employee.salary > 40000 %}
+        High Salary
+        {% else %}
+        Normal Salary
+        {% endif %}
+        <!-- <p> {{ employee.salary }}</p> -->
+    {% endfor %}
+
+{% endblock %}
