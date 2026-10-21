@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404, render,redirect
 # Create your views here.
 from django.http import HttpResponse
 
-from .forms import StudentForm
-from .models import Course, Student
+from .forms import StudentForm,EmpForm
+from .models import Course, Student,depart,employee
 
 
 def home(request):
@@ -57,8 +57,6 @@ def stud_add(request):
         form=StudentForm()
     return render(request,'stud_crud/add.html',{'form':form})
     
-
-# 
 def stud_edit(request,id):
     student=get_object_or_404(Student, id=id)
     if request.method == "POST":
@@ -80,6 +78,36 @@ def stud_delete(request, id):
 def stud_list(request):
     students=Student.objects.all()
     return render(request,'stud_crud/list.html',{'students':students})
+
+# employee FBV 
+def emp_add(request):
+    form=EmpForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('Elist')
+    else:
+        form=EmpForm()
+    return render(request,'emp_crud/add.html',{'form':form})
+
+def emp_edit(request,id):
+    emp=get_object_or_404(employee,id=id)
+    if request.method == "POST":
+        form=EmpForm(request.POST,instance=emp)
+        if form.is_valid():
+            form.save()
+            return redirect('Elist')
+    else:
+        form=EmpForm(instance=emp)
+    return render(request,'emp_crud/edit.html',{'form':form,'employee':emp})
+
+def emp_list(request):
+    employees=employee.objects.all()
+    return render(request,'emp_crud/list.html',{'employees':employees})
+
+def emp_delete(request,id):
+    emp = get_object_or_404(employee, id=id) 
+    emp.delete() 
+    return redirect('Elist')
 
 
 # Session

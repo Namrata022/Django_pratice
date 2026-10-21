@@ -12,6 +12,12 @@ urlpatterns=[
     path('student/edit/<int:id>/',views.stud_edit, name='edit'),
     path('student/delete/<int:id>/',views.stud_delete, name='delete'),
 
+    # employee crud
+    path('employee/add',views.emp_add,name='Eadd'),
+    path('employee/list',views.emp_list,name='Elist'),
+    path('employee/edit/<int:id>/',views.emp_edit,name='Eedit'),
+    path('employee/delete/<int:id>/',views.emp_delete, name='Edelete'),
+
     # session
     path('create/',views.create_session,name='create'),
     path('show/',views.show_session,name='show_session'),

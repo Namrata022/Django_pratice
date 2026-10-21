@@ -24,3 +24,23 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+class depart(models.Model):
+    depart_name=models.CharField(max_length=50)
+    depart_code=models.CharField(max_length=50,unique=True)
+    is_active=models.BooleanField(True)
+
+    def __str__(self):
+        return self.depart_name
+
+class employee(models.Model):
+    emp_id=models.CharField(max_length=50)
+    emp_name=models.CharField(max_length=50)
+    depart_name=models.ForeignKey(depart,on_delete=models.CASCADE,
+                                  null=True,blank=True)
+    email=models.EmailField(max_length=254)
+    mobile=models.CharField()
+    city=models.CharField(max_length=50)
+
+    def __str__(self):
+            return self.emp_name

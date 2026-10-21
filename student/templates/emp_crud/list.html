@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-m10">
+    <div class="row">
+        <h2>Employee Details</h2>
+        <a href="{% url 'Eadd' %}" style="border: 2px solid;color: rgb(13, 0, 255);
+        text-decoration-color: rgb(52, 5, 225);-webkit-text-fill-color: black; 
+        padding-left: 2px;">Add Employee
+        </a>
+        <table class="col-m10">
+            <thead>
+                <tr>
+                    <th>Emp_id</th>
+                    <th>Emp_name</th>
+                    <th>Department</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.emp_id }}</td>
+                    <td>{{ employee.emp_name }}</td>
+                    <td>{{ employee.depart_name }}</td>
+                    <td>{{ employee.mobile }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.city }}</td>
+                    <td>
+                        <a href="{% url 'Eedit' employee.id %}" style="border: 2px solid;color: rgb(71, 69, 66);text-decoration-color: black;-webkit-text-fill-color: black; padding-left: 2px;">Edit</a>
+                        <a href="{% url 'Edelete' employee.id %}" style="border: 2px solid;color: rgb(136, 54, 59);text-decoration-color: black;-webkit-text-fill-color: rgb(255, 0, 0);">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
