@@ -22,5 +22,9 @@ urlpatterns=[
     path('create/',views.create_session,name='create'),
     path('show/',views.show_session,name='show_session'),
     path('modify/',views.modify_session,name='modify'),
-    path('delete/',views.delete_session,name='delete')
+    path('delete/',views.delete_session,name='delete'),
+
+    # Auth
+    path('login/',views.login_view,name='login'),
+    path('logout/',views.logout_view,name='logout')
 ]
