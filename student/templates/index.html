@@ -28,4 +28,18 @@
     {% endif %}
 
 
+    {% comment %} session {% endcomment %}
+    <h2>Django Session Example</h2>
+
+    <a href="{% url 'create' %}">Create Session</a>
+    <br><br>
+
+    <a href="{% url 'show_session' %}">Show Session</a>
+    <br><br>
+
+    <a href="{% url 'modify' %}">Modify Session</a>
+    <br><br>
+
+    <a href="{% url 'delete' %}">Delete Session</a>
+
 {% endblock %}

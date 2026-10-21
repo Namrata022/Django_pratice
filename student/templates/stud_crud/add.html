@@ -5,7 +5,8 @@
     <div class="row">
         <form method="POST">
             <h2>Add Student with django forms</h2>
-            {% csrf_token %}
+           
+            {% comment "" %}
             <label for="name">Name</label>
             <input id="name" name="name" type="text" required><br><br>
 
@@ -26,6 +27,9 @@
             <label for="city">City</label>
             <input id="city" name="city" type="text" required><br><br>
 
+            {% endcomment %} 
+            {% csrf_token %}
+            {{ form.as_p }}
             <button type="submit">Save</button>
         </form>
     </div>

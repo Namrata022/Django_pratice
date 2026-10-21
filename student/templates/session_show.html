@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Session Date</h2>
+
+    <p>Name: {{ name }}</p><br>
+    <p>Color: {{color}}</p>
+
+    <br>
+    <a href="{% url 'home' %}">Back</a>
+
+
+{% endblock %}

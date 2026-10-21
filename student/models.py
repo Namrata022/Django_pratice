@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Cousre(models.Model):
+class Course(models.Model):
     c_name=models.CharField(max_length=50)
     c_code=models.CharField(max_length=20,unique=True)
     start_date=models.DateField()
@@ -14,7 +14,7 @@ class Cousre(models.Model):
 
 class Student(models.Model):
     name=models.CharField(max_length=100)
-    c_name=models.ForeignKey(Cousre,on_delete=models.CASCADE,
+    c_name=models.ForeignKey(Course,on_delete=models.CASCADE,
                              null=True,blank=True
                              )
     email=models.EmailField()

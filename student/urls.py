@@ -11,4 +11,10 @@ urlpatterns=[
     path('student/list/',views.stud_list, name='list'),
     path('student/edit/<int:id>/',views.stud_edit, name='edit'),
     path('student/delete/<int:id>/',views.stud_delete, name='delete'),
+
+    # session
+    path('create/',views.create_session,name='create'),
+    path('show/',views.show_session,name='show_session'),
+    path('modify/',views.modify_session,name='modify'),
+    path('delete/',views.delete_session,name='delete')
 ]
