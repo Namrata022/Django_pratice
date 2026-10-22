@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#email').keyup(function(){
+
+                var email=$(this).val();
+                console.log("Typing:", email);
+                if(email==""){
+                    $("#result").html("Enter Valid Emailid");
+                    return;
+                }
+                $.ajax({
+                    url:"{% url 'check_email' %}",
+                    type:"GET",
+                    data:{email:email},
+                    success:function(response){
+                        if(response.available){
+                            $('#result').html(
+                                "<p style='color:green'>Available</p>"
+                            );
+                        }else{
+                            $('#result').html(
+                                "<p style='color:red'>email already exists</p>"
+                            );
+                        }
+                    }
+                });
+            })
+        });
+    </script>
+</head>
+<body>
+    <input type="email" id="email" class="form-control">
+    <div id="result"></div>
+</body>
+</html>
+

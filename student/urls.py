@@ -1,5 +1,12 @@
 from django.urls import path
 from . import views
+from .views import(
+    CourseCreateView,
+    CourseDeleteView,
+    CourseDetailView,
+    CourseListView,
+    CourseUpdateView
+)
 
 urlpatterns=[
     path('',views.home,name='home'),
@@ -26,5 +33,16 @@ urlpatterns=[
 
     # Auth
     path('login/',views.login_view,name='login'),
-    path('logout/',views.logout_view,name='logout')
+    path('logout/',views.logout_view,name='logout'),
+
+    # CBV course crud
+    path('course_list',CourseListView.as_view(),name='course_list'),
+    path('course_add/',CourseCreateView.as_view(),name='course_add'), 
+    path('course/<int:pk>/',CourseDetailView.as_view(),name='course_detail'), 
+    path('course/<int:pk>/edit/',CourseUpdateView.as_view(),name='course_edit'), 
+    path('course/<int:pk>/delete/',CourseDeleteView.as_view(),name='course_delete'), 
+
+    # AJax 
+    path('email_check/',views.email_check_page,name='email_check_page'),
+    path('check_email/',views.check_email,name='check_email')
 ]

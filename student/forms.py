@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student,employee
+from .models import Student,employee,Course
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -9,4 +9,9 @@ class StudentForm(forms.ModelForm):
 class EmpForm(forms.ModelForm):
     class Meta:
         model = employee
+        fields = '__all__'
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
         fields = '__all__'

@@ -9,8 +9,17 @@ from django.contrib.auth import authenticate,login ,logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import(
+    ListView,
+    CreateView,
+    DetailView,
+    UpdateView,
+    DeleteView
+)
 
-from .forms import StudentForm,EmpForm
+
+from .forms import CourseForm, StudentForm,EmpForm
 from .models import Course, Student,depart,employee
 
 @login_required(login_url='login')
@@ -178,3 +187,54 @@ def logout_view(request):
     logout(request)
     request.session.flush()
     return redirect('login')
+
+# CBV
+class CourseCreateView(LoginRequiredMixin,CreateView):
+    model=Course
+    form_class=CourseForm
+    template_name='course_crud/course_form.html'
+    success_url=reverse_lazy('course_list')
+
+class CourseListView(ListView):
+    model=Course
+    template_name='course_crud/course_list.html'
+    context_object_name='courses'
+    # search code
+    def get_queryset(self):
+        query=self.request.GET.get('q')
+        if query:
+            return Course.objects.filter(
+                course_name_icontains=query
+            )
+        return Course.objects.all()
+
+class CourseUpdateView(UpdateView):
+    model=Course
+    fields='__all__'
+    template_name='course_crud/course_form.html'
+    success_url=reverse_lazy('course_list')
+
+class CourseDeleteView(DeleteView):
+    model=Course
+    template_name='course_crud/course_conform_delete.html'
+    success_url=reverse_lazy('course_list')
+
+class CourseDetailView(DetailView):
+    model=Course
+    template_name='course_crud/course_detail.html'
+
+
+# Ajax
+
+#email checking ajax jquery 
+def email_check_page(request): 
+    return render(request,'email_check.html') 
+
+def check_email(request):
+    email=request.GET.get('email','')
+    exists=Student.objects.filter(
+        email__iexact=email
+    ).exists()
+    return JsonResponse({
+        'available':not exists
+    })
